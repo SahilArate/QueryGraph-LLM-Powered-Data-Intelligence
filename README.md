@@ -45,7 +45,7 @@ In real SAP environments, business data is fragmented across dozens of tables �
 │                                                                   │
 │  ┌──────────────────────────┐  ┌──────────────────────────────┐  │
 │  │     Groq LLM Client      │  │       Guardrail Engine       │  │
-│  │  llama-3.3-70b-versatile │  │  LLM-based domain classifier │  │
+│  │  openai/gpt-oss-120b │  │  LLM-based domain classifier │  │
 │  │  SQL generation          │  │  Blocks off-topic queries    │  │
 │  │  Answer synthesis        │  │  Zero hallucination policy   │  │
 │  └──────────────────────────┘  └──────────────────────────────┘  │
@@ -210,7 +210,7 @@ The key insight here is **few-shot prompting via examples** — embedding exampl
 
 - **Speed:** Groq's LPU architecture delivers ~10x faster inference than OpenAI — critical for streaming UX
 - **Free tier:** No cost for this assignment
-- **llama-3.3-70b-versatile:** Strong SQL generation capability, better than smaller models for complex JOIN logic
+- **openai/gpt-oss-120b:** Strong SQL generation capability, better than smaller models for complex JOIN logic
 
 ### Streaming Implementation
 
@@ -219,7 +219,7 @@ Responses stream token-by-token using FastAPI's `StreamingResponse` with Server-
 ```python
 async def stream_response():
     stream = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[...],
         stream=True  # ← Groq streams tokens
     )

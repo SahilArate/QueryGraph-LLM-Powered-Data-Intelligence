@@ -89,7 +89,7 @@ Question: {question}
 
 def check_guardrail(question: str) -> bool:
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": GUARDRAIL_PROMPT.format(question=question)}],
         max_tokens=10,
         temperature=0
@@ -104,7 +104,7 @@ def generate_sql(question: str, conversation_history: list = []) -> str:
     messages.append({"role": "user", "content": f"Generate SQL for: {question}"})
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=messages,
         max_tokens=500,
         temperature=0
@@ -125,7 +125,7 @@ Answer in 2-4 sentences. Be specific with numbers and names from the data.
 If results are empty, say no matching records were found and suggest rephrasing.
 """
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=300,
         temperature=0.3

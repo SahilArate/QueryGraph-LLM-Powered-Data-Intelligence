@@ -353,7 +353,7 @@ Graph Viz:    Cytoscape.js (via react-cytoscapejs wrapper)
 Backend:      Python FastAPI
 Primary DB:   PostgreSQL (Neon.tech free tier - serverless)
 Graph DB:     Neo4j AuraDB (free tier)
-LLM:          Groq (llama-3.3-70b-versatile)
+LLM:          Groq (openai/gpt-oss-120b)
 ORM:          SQLAlchemy (Python)
 Hosting:      Vercel (frontend) + Render (FastAPI backend)
 Want me to now scaffold the full folder structure and write the starting code for each layer?
@@ -1324,7 +1324,7 @@ Question: {question}
 
 def check_guardrail(question: str) -> bool:
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": GUARDRAIL_PROMPT.format(question=question)}],
         max_tokens=10,
         temperature=0
@@ -1338,7 +1338,7 @@ def generate_sql(question: str, conversation_history: list = []) -> str:
     messages.append({"role": "user", "content": f"Generate SQL for: {question}"})
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=messages,
         max_tokens=500,
         temperature=0
@@ -1357,7 +1357,7 @@ Query results: {results}
 Answer in 2-4 sentences. Be specific with numbers and names from the data.
 """
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=300,
         temperature=0.3

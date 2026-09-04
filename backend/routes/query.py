@@ -73,7 +73,7 @@ If results are empty, say no matching records were found."""
 
     async def stream_response():
         stream = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=300, temperature=0.3, stream=True
         )
