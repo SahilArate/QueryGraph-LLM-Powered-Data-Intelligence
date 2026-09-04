@@ -1326,11 +1326,11 @@ def check_guardrail(question: str) -> bool:
     response = client.chat.completions.create(
         model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": GUARDRAIL_PROMPT.format(question=question)}],
-        max_tokens=10,
+        max_tokens=100,
         temperature=0
     )
     result = response.choices[0].message.content.strip().upper()
-    return result == "ALLOWED"
+    return "ALLOWED" in result
 
 def generate_sql(question: str, conversation_history: list = []) -> str:
     messages = [{"role": "system", "content": SCHEMA_CONTEXT}]
